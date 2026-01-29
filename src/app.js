@@ -10,6 +10,7 @@ const authMiddleware = require('./middleware/auth.middleware');
 app.use(authMiddleware);
 
 app.use('/dashboard', require('./routes/dashboard.routes'));
+app.use('/sensors', require('./routes/sensors.routes'));
 
 // health check
 app.get('/health', (req, res) => {
