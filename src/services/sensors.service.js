@@ -12,6 +12,19 @@ async function getMeasuresForSensor(userEmail, sensorId) {
     return dataAdapter.getMeasuresBySensor(sensorId);
 }
 
+async function getMeasuresForSensorRange(userEmail, sensorId, from, to) {
+    // 1. verify ownership
+    const ownsSensor = await dataAdapter.userOwnsSensor(userEmail, sensorId);
+
+    if (!ownsSensor) {
+        throw new Error('FORBIDDEN');
+    }
+
+    // 2. fetch measures
+    return dataAdapter.getMeasuresBySensorRange(sensorId, from, to);
+}
+
 module.exports = {
-    getMeasuresForSensor
+    getMeasuresForSensor,
+    getMeasuresForSensorRange
 };

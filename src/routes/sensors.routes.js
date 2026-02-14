@@ -6,11 +6,11 @@ router.get('/:id/measures', async (req, res) => {
     try {
         const user = req.user;
         const sensorId = req.params.id;
+        const { from, to } = req.query;
 
-        const measures = await sensorsService.getMeasuresForSensor(
-            user.email,
-            sensorId
-        );
+        const measures = from && to
+            ? await sensorsService.getMeasuresForSensorRange(user.email, sensorId, from, to)
+            : await sensorsService.getMeasuresForSensor(user.email, sensorId);
 
         res.json(measures);
     } catch (err) {

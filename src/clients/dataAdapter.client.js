@@ -30,9 +30,18 @@ async function getMeasuresBySensor(sensorId) {
     return res.data;
 }
 
+async function getMeasuresBySensorRange(sensorId, from, to) {
+    const res = await axios.get(
+        `${BASE_URL}/measures/sensor/${sensorId}/range`,
+        { params: { from, to } }
+    );
+    return res.data;
+}
+
 module.exports = {
     getSensorsByUser,
     getSensorById,
     userOwnsSensor,
-    getMeasuresBySensor
+    getMeasuresBySensor,
+    getMeasuresBySensorRange
 };
