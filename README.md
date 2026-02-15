@@ -7,7 +7,7 @@ Authenticated gateway that exposes read-only user data by aggregating Internal D
 
 ## Configuration
 
-`.env`
+Create `.env` from `.env.example`:
 ```
 PORT=3004
 JWT_SECRET=super-secret-key
@@ -23,6 +23,7 @@ Returns user info from the JWT and the user's sensors.
 
 ### `GET /sensors/:id/measures`
 Returns measures for a sensor owned by the authenticated user.
+Supports optional `from`/`to` query params for range filtering.
 
 ### `GET /health`
 Service health check.
