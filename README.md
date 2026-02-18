@@ -28,6 +28,41 @@ Supports optional `from`/`to` query params for range filtering.
 ### `GET /health`
 Service health check.
 
+
+## JSON Examples
+
+### `GET /dashboard`
+```json
+{
+  "user": {
+    "email": "user@example.com",
+    "name": "John",
+    "surname": "Doe"
+  },
+  "sensors": [
+    {
+      "id": 3,
+      "user_email": "user@example.com",
+      "type": "temperature",
+      "name": "Living Room",
+      "secret_hash": "<bcrypt-hash>"
+    }
+  ]
+}
+```
+
+### `GET /sensors/:id/measures`
+```json
+[
+  {
+    "id": 10,
+    "sensor_id": 3,
+    "timestamp": "2026-02-18T12:00:00Z",
+    "value": { "temperature": 21.4 }
+  }
+]
+```
+
 ## Run
 
 ```
